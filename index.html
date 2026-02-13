@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For AnshuCSAS 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #ffcae5 0%, #ff9ebb 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Fredoka One', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Powerpuff Heart Background Pattern */
+        .bg-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(#ff69b4 15%, transparent 16%),
+                radial-gradient(#ff69b4 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            opacity: 0.1;
+            z-index: 0;
+            animation: bgScroll 20s linear infinite;
+        }
+
+        @keyframes bgScroll {
+            0% { background-position: 0 0, 30px 30px; }
+            100% { background-position: 100px 100px, 130px 130px; }
+        }
+
+        /* Floating Emojis */
+        .emoji-float {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatUp linear infinite;
+            opacity: 0.7;
+            z-index: 1;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #ff1493;
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .sub-header {
+            color: #ff69b4;
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .highlight-box {
+            background-color: #fff0f5;
+            border: 3px dashed #ff69b4;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+            color: #d63384;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            font-family: 'Fredoka One', sans-serif;
+            font-weight: normal;
+        }
+
+        .big-question {
+            font-size: 2rem;
+            color: #ff1493;
+            margin: 30px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .closing-note {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 20px;
+            font-style: italic;
+            font-family: sans-serif;
+        }
+
+        .ppg-deco {
+            font-size: 4rem;
+            margin: -10px;
+            display: inline-block;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
+        }
+
+        /* Cute Button */
+        button {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border: none;
+            padding: 15px 40px;
+            color: white;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
+        }
+
+        /* Message that appears after clicking */
+        #hidden-message {
+            display: none;
+            margin-top: 20px;
+            color: #ff1493;
+            font-size: 1.3rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="bg-hearts"></div>
+
+    <div id="emoji-container"></div>
+
+    <div class="container">
+        <div>
+            <span class="ppg-deco">🌸</span>
+            <span class="ppg-deco">🎀</span>
+            <span class="ppg-deco">🦋</span>
+        </div>
+        
+        <h1>To AnshuCSAS</h1>
+        <div class="sub-header">My Life for 4 Years ✨</div>
+
+        <div class="highlight-box">
+            "I know we have ended things for the good, but the moments we have spent together are worth 1 million days."
+        </div>
+
+        <div class="big-question">
+            Will you be my Valentine? 💌
+        </div>
+
+        <button onclick="showMessage()">Yes, for the memories 💖</button>
+
+        <div id="hidden-message">
+            Thank you. I hope we both find the greater good that we are looking for. <br>
+            Always wishing you the best. 🌹
+        </div>
+    </div>
+
+    <script>
+        // Create floating emojis
+        const emojis = ['🌸', '💖', '🍭', '✨', '🦋', '🍓', '🎀', '🦄'];
+        const container = document.getElementById('emoji-container');
+
+        function createEmoji() {
+            const el = document.createElement('div');
+            el.classList.add('emoji-float');
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Random positioning
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5 to 10 seconds
+            el.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            
+            container.appendChild(el);
+
+            // Remove after animation
+            setTimeout(() => {
+                el.remove();
+            }, 10000);
+        }
+
+        // Generate emojis constantly
+        setInterval(createEmoji, 400);
+
+        // Button Logic
+        function showMessage() {
+            const msg = document.getElementById('hidden-message');
+            msg.style.display = 'block';
+            
+            // Explosion of confetti emojis
+            for(let i=0; i<30; i++) {
+                setTimeout(createEmoji, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>

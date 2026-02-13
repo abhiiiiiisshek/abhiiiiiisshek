@@ -3,227 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For AnshuCSAS 💖</title>
+    <title>Mission: Valentine 💖</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Pacifico&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Vt323&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #ffcae5 0%, #ff9ebb 100%);
+            background-color: #ffcae5;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Fredoka One', cursive;
             overflow: hidden;
-            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23ff1493"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
         }
 
-        /* Powerpuff Heart Background Pattern */
-        .bg-hearts {
+        /* The spinning background burst from Powerpuff Girls */
+        .ppg-burst {
+            position: absolute;
+            width: 200vmax;
+            height: 200vmax;
+            background: repeating-conic-gradient(
+                from 0deg,
+                #ff9ebb 0deg 15deg,
+                #ffcae5 15deg 30deg
+            );
+            animation: spin 60s linear infinite;
+            z-index: -2;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 6px solid #000; /* Cartoon outline style */
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        /* Powerpuff Heart transitions */
+        .heart-transition {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #ff1493;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            transition: width 0.8s ease, height 0.8s ease;
+        }
+
+        .active-transition {
+            width: 300vmax;
+            height: 300vmax;
+        }
+
+        h1 { color: #e91e63; font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px #ffcee6; }
+        p { color: #333; font-size: 1.2rem; line-height: 1.5; }
+        
+        .deep-text {
+            color: #880e4f;
+            font-size: 1.4rem;
+            font-style: italic;
+            margin: 20px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buttons */
+        .btn {
+            background: #00bcd4; /* Bubbles Blue */
+            border: 4px solid #000;
+            padding: 15px 30px;
+            color: #fff;
+            font-family: 'Fredoka One', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 20px;
+            display: inline-block;
+            text-transform: uppercase;
+            box-shadow: 5px 5px 0px #000;
+            transition: transform 0.1s;
+        }
+
+        .btn:active {
+            transform: translate(5px, 5px);
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        .btn-pink { background: #e91e63; } /* Blossom Pink */
+        .btn-green { background: #8bc34a; } /* Buttercup Green */
+
+        /* Progress Bar */
+        .progress-container {
+            width: 100%;
+            background: #eee;
+            border: 3px solid #000;
+            height: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: none; /* Hidden on start */
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #e91e63;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        /* Steps display logic */
+        .step { display: none; }
+        .step.active { display: block; }
+
+        /* Scanning Animation */
+        .scanner-line {
+            height: 5px;
+            width: 100%;
+            background: #e91e63;
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(#ff69b4 15%, transparent 16%),
-                radial-gradient(#ff69b4 15%, transparent 16%);
-            background-size: 60px 60px;
-            background-position: 0 0, 30px 30px;
-            opacity: 0.1;
-            z-index: 0;
-            animation: bgScroll 20s linear infinite;
-        }
-
-        @keyframes bgScroll {
-            0% { background-position: 0 0, 30px 30px; }
-            100% { background-position: 100px 100px, 130px 130px; }
-        }
-
-        /* Floating Emojis */
-        .emoji-float {
-            position: absolute;
-            font-size: 2rem;
-            animation: floatUp linear infinite;
-            opacity: 0.7;
-            z-index: 1;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(5px);
-            padding: 40px;
-            border-radius: 30px;
-            text-align: center;
-            border: 5px solid #fff;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
-            max-width: 600px;
-            width: 90%;
-        }
-
-        h1 {
-            color: #ff1493;
-            font-family: 'Pacifico', cursive;
-            font-size: 3rem;
-            margin: 0;
-            text-shadow: 2px 2px 0px #fff;
-        }
-
-        .sub-header {
-            color: #ff69b4;
-            font-size: 1.5rem;
-            margin-top: 10px;
-        }
-
-        .highlight-box {
-            background-color: #fff0f5;
-            border: 3px dashed #ff69b4;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 25px 0;
-            color: #d63384;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            font-family: 'Fredoka One', sans-serif;
-            font-weight: normal;
-        }
-
-        .big-question {
-            font-size: 2rem;
-            color: #ff1493;
-            margin: 30px 0;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .closing-note {
-            font-size: 0.9rem;
-            color: #888;
-            margin-top: 20px;
-            font-style: italic;
-            font-family: sans-serif;
-        }
-
-        .ppg-deco {
-            font-size: 4rem;
-            margin: -10px;
-            display: inline-block;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
-        }
-
-        /* Cute Button */
-        button {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            border: none;
-            padding: 15px 40px;
-            color: white;
-            font-family: 'Fredoka One', cursive;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);
-        }
-
-        button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.6);
-        }
-
-        /* Message that appears after clicking */
-        #hidden-message {
+            animation: scan 2s infinite alternate;
             display: none;
-            margin-top: 20px;
-            color: #ff1493;
-            font-size: 1.3rem;
         }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+        /* Emoji Rain */
+        .emoji {
+            position: fixed;
+            top: -50px;
+            font-size: 30px;
+            z-index: 50;
+            animation: fall linear forwards;
+        }
+        @keyframes fall { to { transform: translateY(110vh); } }
 
     </style>
 </head>
 <body>
 
-    <div class="bg-hearts"></div>
-
-    <div id="emoji-container"></div>
+    <div class="ppg-burst"></div>
+    <div class="heart-transition" id="transition-overlay"></div>
 
     <div class="container">
-        <div>
-            <span class="ppg-deco">🌸</span>
-            <span class="ppg-deco">🎀</span>
-            <span class="ppg-deco">🦋</span>
-        </div>
         
-        <h1>To AnshuCSAS</h1>
-        <div class="sub-header">My Life for 4 Years ✨</div>
-
-        <div class="highlight-box">
-            "I know we have ended things for the good, but the moments we have spent together are worth 1 million days."
+        <div id="step-1" class="step active">
+            <h1>Townsville Alert! 🚨</h1>
+            <p>Incoming message for <strong>AnshuCSAS</strong>.</p>
+            <p>Secure line established. Are you ready to receive the transmission?</p>
+            <button class="btn btn-pink" onclick="nextStep(2)">Yes, Open It! 🎀</button>
         </div>
 
-        <div class="big-question">
-            Will you be my Valentine? 💌
+        <div id="step-2" class="step">
+            <div class="scanner-line" id="scanner"></div>
+            <h1>Security Check 👮‍♀️</h1>
+            <p>Wait! We need to verify your identity.</p>
+            <p>Scanning for: <strong>Extreme Cuteness & 4 Years of History...</strong></p>
+            <div id="scan-status" style="margin: 20px; font-size: 1.5rem; color: #e91e63;">Scanning...</div>
+            <button class="btn btn-green" id="scan-btn" onclick="runScan()" disabled>Hold on...</button>
         </div>
 
-        <button onclick="showMessage()">Yes, for the memories 💖</button>
-
-        <div id="hidden-message">
-            Thank you. I hope we both find the greater good that we are looking for. <br>
-            Always wishing you the best. 🌹
+        <div id="step-3" class="step">
+            <div class="progress-container" style="display:block;">
+                <div class="progress-bar" id="prog-bar" style="width: 33%"></div>
+            </div>
+            <h1>Analyzing Data... 🧪</h1>
+            <p>Adding Sugar, Spice, and...</p>
+            <div class="deep-text">
+                "We ended things for the good, I know..."
+            </div>
+            <button class="btn btn-pink" onclick="nextStep(4)">Continue Analysis ➡️</button>
         </div>
+
+        <div id="step-4" class="step">
+             <div class="progress-container" style="display:block;">
+                <div class="progress-bar" style="width: 66%"></div>
+            </div>
+            <h1>Calculation Result 🧮</h1>
+            <div class="deep-text">
+                "...but the moments we spent together? Worth <strong>1 million days</strong>."
+            </div>
+            <p>Some things are infinite, even when they change form.</p>
+            <button class="btn btn-pink" onclick="nextStep(5)">Final Result 🦋</button>
+        </div>
+
+        <div id="step-5" class="step">
+             <div class="progress-container" style="display:block;">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
+            <h1 style="font-size: 3rem;">Dear Anshu,</h1>
+            
+            <p>Will you be my Valentine?</p>
+            
+            <div class="deep-text" style="font-size: 1rem; margin-top: 30px;">
+                "Thank you for being my life for four years. <br>
+                I hope we both find the greater good we are looking for."
+            </div>
+
+            <br>
+            <button class="btn btn-pink" onclick="celebrate()">YES 💖</button>
+            <button class="btn btn-green" onclick="celebrate()">Also Yes (but in green) 💚</button>
+        </div>
+
     </div>
 
     <script>
-        // Create floating emojis
-        const emojis = ['🌸', '💖', '🍭', '✨', '🦋', '🍓', '🎀', '🦄'];
-        const container = document.getElementById('emoji-container');
+        function nextStep(stepNumber) {
+            // Trigger Heart Transition Wipe
+            const overlay = document.getElementById('transition-overlay');
+            overlay.classList.add('active-transition');
 
-        function createEmoji() {
-            const el = document.createElement('div');
-            el.classList.add('emoji-float');
-            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            
-            // Random positioning
-            el.style.left = Math.random() * 100 + 'vw';
-            el.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5 to 10 seconds
-            el.style.fontSize = (Math.random() * 20 + 20) + 'px';
-            
-            container.appendChild(el);
-
-            // Remove after animation
             setTimeout(() => {
-                el.remove();
-            }, 10000);
-        }
+                // Hide all steps
+                document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+                
+                // Show requested step
+                document.getElementById('step-' + stepNumber).classList.add('active');
+                
+                // Remove transition wipe
+                overlay.classList.remove('active-transition');
+            }, 800);
 
-        // Generate emojis constantly
-        setInterval(createEmoji, 400);
-
-        // Button Logic
-        function showMessage() {
-            const msg = document.getElementById('hidden-message');
-            msg.style.display = 'block';
-            
-            // Explosion of confetti emojis
-            for(let i=0; i<30; i++) {
-                setTimeout(createEmoji, i * 50);
+            // Specific logic for Step 2
+            if(stepNumber === 2) {
+                setTimeout(() => {
+                    document.getElementById('scanner').style.display = 'block';
+                    startFakeScan();
+                }, 1000);
             }
         }
+
+        function startFakeScan() {
+            const status = document.getElementById('scan-status');
+            const btn = document.getElementById('scan-btn');
+            const messages = [
+                "Scanning eyes... 👀",
+                "Detecting chaotic energy... ⚡",
+                "Analyzing smile... ✨",
+                "Match Found: 100% AnshuCSAS 🌸"
+            ];
+            
+            let i = 0;
+            let interval = setInterval(() => {
+                status.innerText = messages[i];
+                i++;
+                if(i >= messages.length) {
+                    clearInterval(interval);
+                    document.getElementById('scanner').style.display = 'none';
+                    btn.innerText = "Identity Confirmed. Proceed.";
+                    btn.disabled = false;
+                    btn.onclick = () => nextStep(3);
+                    btn.classList.remove('btn-green');
+                    btn.classList.add('btn-pink');
+                }
+            }, 1000);
+        }
+
+        function celebrate() {
+            alert("Thank you for the memories. Wishing you the best, always. 💖");
+            setInterval(createEmoji, 100);
+        }
+
+        // Floating Emoji Logic
+        const emojis = ['🌸', '🍭', '🎀', '💎', '🦄', '❤️', '💌'];
+        function createEmoji() {
+            const el = document.createElement('div');
+            el.classList.add('emoji');
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 5000);
+        }
+        
+        // Mouse trail logic
+        document.addEventListener('mousemove', function(e) {
+            if(Math.random() > 0.8) { // Don't create too many
+                const heart = document.createElement('div');
+                heart.innerHTML = '✨';
+                heart.style.position = 'fixed';
+                heart.style.left = e.pageX + 'px';
+                heart.style.top = e.pageY + 'px';
+                heart.style.pointerEvents = 'none';
+                heart.style.animation = 'fall 1s linear forwards';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 1000);
+            }
+        });
+
     </script>
 </body>
 </html>
